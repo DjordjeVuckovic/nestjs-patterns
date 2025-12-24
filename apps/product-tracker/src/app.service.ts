@@ -5,5 +5,4 @@ export class AppService {
   checkHealth(): string {
     return 'YES';
   }
-
 }

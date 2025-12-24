@@ -8,7 +8,7 @@ import { ICategoryRepository } from './abstractions/category.repository';
 @Injectable()
 export class CategoryRepository implements ICategoryRepository {
   constructor(
-    @InjectRepository(Repository<Category>)
+    @InjectRepository(Category)
     private readonly repo: Repository<Category>,
   ) {}
 

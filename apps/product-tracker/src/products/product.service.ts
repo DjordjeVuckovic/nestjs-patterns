@@ -23,7 +23,7 @@ import {
 import {
   createCursorResponse,
   CursorResponse,
-} from '../shared/cursor-pagination';
+} from '../shared/types/cursor-pagination';
 
 @Injectable()
 export class ProductService {

@@ -8,7 +8,7 @@ import { EntityManager, Repository } from 'typeorm';
 @Injectable()
 export class ProductRepository implements IProductRepository {
   constructor(
-    @InjectRepository(Repository<Product>)
+    @InjectRepository(Product)
     private readonly repo: Repository<Product>,
   ) {}
 

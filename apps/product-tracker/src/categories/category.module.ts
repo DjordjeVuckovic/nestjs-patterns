@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoryRepository } from './category.repository';
+import { Category } from './category.entity';
 import { ICategoryRepositoryToken } from './abstractions/category.repository';
 import { StoreModule } from '../store/store.module';
 
@@ -11,6 +13,10 @@ import { StoreModule } from '../store/store.module';
       useClass: CategoryRepository,
     },
   ],
-  imports: [StoreModule],
+  imports: [
+    TypeOrmModule.forFeature([Category]),
+    StoreModule,
+  ],
+  exports: [ICategoryRepositoryToken],
 })
 export class CategoryModule {}

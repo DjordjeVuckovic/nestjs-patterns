@@ -31,21 +31,6 @@ export class TypeOrmTransactionManager implements ITransactionManager {
     }
   }
 
-  private toIsolationLevel(level?: TransactionOptions['isolationLevel']) {
-    switch (level) {
-      case 'READ UNCOMMITTED':
-        return 'READ UNCOMMITTED';
-      case 'READ COMMITTED':
-        return 'READ COMMITTED';
-      case 'REPEATABLE READ':
-        return 'REPEATABLE READ';
-      case 'SERIALIZABLE':
-        return 'SERIALIZABLE';
-      default:
-        return undefined;
-    }
-  }
-
   async startTransaction(): Promise<TransactionCtx> {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
@@ -59,5 +44,20 @@ export class TypeOrmTransactionManager implements ITransactionManager {
 
   rollbackTransaction(ctx: TransactionCtx): Promise<void> {
     return ctx.connection.createQueryRunner().rollbackTransaction();
+  }
+
+  private toIsolationLevel(level?: TransactionOptions['isolationLevel']) {
+    switch (level) {
+      case 'READ UNCOMMITTED':
+        return 'READ UNCOMMITTED';
+      case 'READ COMMITTED':
+        return 'READ COMMITTED';
+      case 'REPEATABLE READ':
+        return 'REPEATABLE READ';
+      case 'SERIALIZABLE':
+        return 'SERIALIZABLE';
+      default:
+        return undefined;
+    }
   }
 }
